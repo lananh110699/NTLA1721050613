@@ -10,120 +10,119 @@ using NTLA1721050613.Models;
 
 namespace NTLA1721050613.Controllers
 {
-    public class PeopleController : Controller
+    public class LucturesController : Controller
     {
         private NTLA1721050613DBContext db = new NTLA1721050613DBContext();
         StringProcess auto = new StringProcess();
 
-        // GET: People
+        // GET: Luctures
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Luctures.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Luctures/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Lucture lucture = db.Luctures.Find(id);
+            if (lucture == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(lucture);
         }
 
-        // GET: People/Create
+        // GET: Luctures/Create
         public ActionResult Create()
         {
             if (db.Persons.OrderByDescending(m => m.perSonID).Count() == 0)
             {
-                var newID = "PER001";
+                var newID = "LCT001";
                 ViewBag.newid = newID;
             }
             else
             {
                 var PsID = db.Persons.OrderByDescending(m => m.perSonID).FirstOrDefault().perSonID;
-                var newID = auto.GenKey("PER", PsID);
+                var newID = auto.GenKey("LCT", PsID);
                 ViewBag.newid = newID;
             }
-
             return View();
         }
 
-        // POST: People/Create
+        // POST: Luctures/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PersonID,PersonName")] Person person)
+        public ActionResult Create([Bind(Include = "PersonID,PersonName,Faculty,Department")] Lucture lucture)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.People.Add(lucture);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(lucture);
         }
 
-        // GET: People/Edit/5
+        // GET: Luctures/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Lucture lucture = db.Luctures.Find(id);
+            if (lucture == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(lucture);
         }
 
-        // POST: People/Edit/5
+        // POST: Luctures/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonID,PersonName")] Person person)
+        public ActionResult Edit([Bind(Include = "PersonID,PersonName,Faculty,Department")] Lucture lucture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(lucture).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(lucture);
         }
 
-        // GET: People/Delete/5
+        // GET: Luctures/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Lucture lucture = db.Luctures.Find(id);
+            if (lucture == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(lucture);
         }
 
-        // POST: People/Delete/5
+        // POST: Luctures/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Lucture lucture = db.Luctures.Find(id);
+            db.People.Remove(lucture);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

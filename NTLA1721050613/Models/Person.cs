@@ -12,10 +12,12 @@ namespace NTLA1721050613.Models
         [Key]
         [Required(ErrorMessage = "ID không ğıõòc boÒ trôìng")]
         [StringLength(20)]
+        [Display(Name = "ID sinh viên")]
         public string PersonID { get; set; }
 
         [Required(ErrorMessage = "Tên không ğıõòc boÒ trôìng")]
         [StringLength(50)]
+        [Display(Name = "Tên sinh viên")]
         public string PersonName { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace NTLA1721050613.Controllers
     {
         private NTLA1721050613DBContext db = new NTLA1721050613DBContext();
 
+        StringProcess auto = new StringProcess();
+
         // GET: Students
         public ActionResult Index()
         {
@@ -38,6 +40,17 @@ namespace NTLA1721050613.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+            if (db.Persons.OrderByDescending(m => m.perSonID).Count() == 0)
+            {
+                var newID = "STD001";
+                ViewBag.newid = newID;
+            }
+            else
+            {
+                var PsID = db.Persons.OrderByDescending(m => m.perSonID).FirstOrDefault().perSonID;
+                var newID = auto.GenKey("STD", PsID);
+                ViewBag.newid = newID;
+            }
             return View();
         }
 

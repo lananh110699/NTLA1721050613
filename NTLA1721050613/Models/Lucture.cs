@@ -10,9 +10,11 @@ namespace NTLA1721050613.Models
     {
         
         [StringLength(50)]
+        [Display(Name = "Khoa")]
         public String Faculty { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Bộ môn")]
         public String Department { get; set; }
     }
     

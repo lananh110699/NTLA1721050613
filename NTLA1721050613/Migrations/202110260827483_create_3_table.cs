@@ -3,7 +3,7 @@ namespace NTLA1721050613.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class create_table_student : DbMigration
+    public partial class create_3_table : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,8 @@ namespace NTLA1721050613.Migrations
                     {
                         PersonID = c.String(nullable: false, maxLength: 20, unicode: false),
                         PersonName = c.String(nullable: false, maxLength: 50),
+                        Faculty = c.String(maxLength: 50),
+                        Department = c.String(maxLength: 50),
                         University = c.String(maxLength: 50),
                         Address = c.String(maxLength: 50),
                         Discriminator = c.String(nullable: false, maxLength: 128),
