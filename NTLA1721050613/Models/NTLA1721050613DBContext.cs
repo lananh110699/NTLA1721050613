@@ -14,6 +14,7 @@ namespace NTLA1721050613.Models
 
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Lucture> Luctures{ get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

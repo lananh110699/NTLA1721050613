@@ -17,7 +17,7 @@ namespace NTLA1721050613.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Students.ToList());
         }
 
         // GET: Students/Details/5
@@ -27,7 +27,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.People.Find(id);
+            Student student = db.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.People.Find(id);
+            Student student = db.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.People.Find(id);
+            Student student = db.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace NTLA1721050613.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Student student = db.People.Find(id);
+            Student student = db.Students.Find(id);
             db.People.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
