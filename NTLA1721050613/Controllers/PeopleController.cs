@@ -18,7 +18,7 @@ namespace NTLA1721050613.Controllers
         // GET: People
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Persons.ToList());
         }
 
         // GET: People/Details/5
@@ -28,7 +28,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
+            Person person = db.Persons.Find(id);
             if (person == null)
             {
                 return HttpNotFound();
@@ -39,14 +39,14 @@ namespace NTLA1721050613.Controllers
         // GET: People/Create
         public ActionResult Create()
         {
-            if (db.Persons.OrderByDescending(m => m.perSonID).Count() == 0)
+            if (db.Persons.OrderByDescending(m => m.PersonID).Count() == 0)
             {
                 var newID = "PER001";
                 ViewBag.newid = newID;
             }
             else
             {
-                var PsID = db.Persons.OrderByDescending(m => m.perSonID).FirstOrDefault().perSonID;
+                var PsID = db.Persons.OrderByDescending(m => m.PersonID).FirstOrDefault().PersonID;
                 var newID = auto.GenKey("PER", PsID);
                 ViewBag.newid = newID;
             }
@@ -63,7 +63,7 @@ namespace NTLA1721050613.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Persons.Add(person);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,7 +78,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
+            Person person = db.Persons.Find(id);
             if (person == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace NTLA1721050613.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
+            Person person = db.Persons.Find(id);
             if (person == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace NTLA1721050613.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Person person = db.Persons.Find(id);
+            db.Persons.Remove(person);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

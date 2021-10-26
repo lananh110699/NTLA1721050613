@@ -40,14 +40,14 @@ namespace NTLA1721050613.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-            if (db.Persons.OrderByDescending(m => m.perSonID).Count() == 0)
+            if (db.Persons.OrderByDescending(m => m.PersonID).Count() == 0)
             {
                 var newID = "STD001";
                 ViewBag.newid = newID;
             }
             else
             {
-                var PsID = db.Persons.OrderByDescending(m => m.perSonID).FirstOrDefault().perSonID;
+                var PsID = db.Persons.OrderByDescending(m => m.PersonID).FirstOrDefault().PersonID;
                 var newID = auto.GenKey("STD", PsID);
                 ViewBag.newid = newID;
             }
@@ -63,7 +63,7 @@ namespace NTLA1721050613.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(student);
+                db.Persons.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -123,7 +123,7 @@ namespace NTLA1721050613.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Student student = db.Students.Find(id);
-            db.People.Remove(student);
+            db.Persons.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
